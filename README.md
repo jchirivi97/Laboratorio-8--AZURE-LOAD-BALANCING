@@ -91,6 +91,8 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
 7. La función que calcula en enésimo número de la secuencia de Fibonacci está muy mal construido y consume bastante CPU para obtener la respuesta. Usando la consola del Browser documente los tiempos de respuesta para dicho endpoint usando los siguintes valores:
 
+#### EVIDENCIA
+
    * Por motivos de internet (conexion muy lenta) solo hicimos la prueba  de algunos casos.
 
     * 1000000
@@ -117,11 +119,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     
 ![evidencia A0](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/punto7/6-1090000-A0.png)
     
-    
-#### EVIDENCIA
-![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/11-lab08-part1-7.png)
 
-![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/12-lab08-part1-7.2.png)
 
 8. Dírijase ahora a Azure y verifique el consumo de CPU para la VM. (Los resultados pueden tardar 5 minutos en aparecer).
 
@@ -170,7 +168,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
     * 1010000
     
-![evidencia A3](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/punto7/2-1010000-A0.png)
+![evidencia A3](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/punto7/2-1010000-A3.png)
 
     * 1030000
     
@@ -201,7 +199,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
 
-[evidencia repetir punto 8](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/3-lab08-part1-1.3.png)
+![evidencia repetir punto 8](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/3-lab08-part1-1.3.png)
 
    * Crea 6 al crear la VM
 
@@ -225,18 +223,51 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
    
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
 
-[evidencia repetir punto 8](
+![evidencia tabla](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/tablaCalculo.png)
+
+   * Se debe a la capacidad de procesamiento de la VM.
 
 
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
+
+![evidencia consumo CPU](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/13-lab08-part1-8.png)
+
+   * La funcion tiene un ciclo para calcular el resultado donde el consumo depende de la cantidad de operaciones, es decir, es una programa lineal. 
+   
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
     * Si hubo fallos documentelos y explique.
+    
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
+
+   * Las diferencias entre cualquier tipo de tamano bien sea `B2ms` y `B1ls` o las que usamos `A3` y `A0` hablando de infraestructura es el numero de vCPUs, la RAM, el numero de data disk y el precio. pero existen otras como el rendimiento base de CPU, rendimiento maximo de la CPU, redimiento maximo de almacenamiento con o sin cache, entre otros.
+   
+   * B2ms:
+![evidencia consumo CPU](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/b2.png)
+   
+   * B1ls:
+
+![evidencia consumo CPU](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/b1.png)
+
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+
+   * No es una buena solucion, ya que lo unico que hace es incrementar costos.
+   
+   * No pasa nada sigue comportandose de la misma manera.
+   
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
+
+   * Al cambiar el tamano de la VM, la infraestructura no cambia, solo se caen los servicios y toca reiniciar la maquina. Se puede generar otra IP publica pero si uno lo desea puede conservar la IP.
+   
+   * Lo negativo, es volver a correr los servicios o en este caso volver a ejecutar el programa
+   
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
+
+   * SI, Hubo mejora en el consumo de CPU y en los tiempos de respuesta, pero en si el problema esta en la app.
+   
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
+
+   * No, es el mismo.
 
 ### Parte 2 - Escalabilidad horizontal
 
