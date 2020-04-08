@@ -31,19 +31,32 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
 ![Imágen 1](images/part1/part1-vm-basic-config.png)
 
+#### EVIDENCIA
 
-RTA//
-![Captura](https://user-images.githubusercontent.com/48265107/78279048-93d41b80-74dc-11ea-9a75-c7cb4ca00761.JPG)
+![evidencia caracteristicas basicas](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/1-lab08-part1-1.png)
 
-![Captura](https://user-images.githubusercontent.com/48265107/78281067-bc114980-74df-11ea-911b-5fc4346f7e79.JPG)
+![evidencia detalles finales](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/2-lab08-part1-1.2.png)
+
+![evidencia creacion de VM](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/3-lab08-part1-1.3.png)
+
+![evidencia networking](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/4-lab08-part1-1.4.png)
+
+
 
 2. Para conectarse a la VM use el siguiente comando, donde las `x` las debe remplazar por la IP de su propia VM.
 
     `ssh scalability_lab@xxx.xxx.xxx.xxx`
     
-    
+#### EVIDENCIA
+   
+![evidencia conexion]( https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/5-lab08-part1-2.png)
 
 3. Instale node, para ello siga la sección *Installing Node.js and npm using NVM* que encontrará en este [enlace](https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/).
+
+#### EVIDENCIA
+
+![evidencia intalacion ](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/6-lab08-part1-3.png)
+
 4. Para instalar la aplicación adjunta al Laboratorio, suba la carpeta `FibonacciApp` a un repositorio al cual tenga acceso y ejecute estos comandos dentro de la VM:
 
     `git clone <your_repo>`
@@ -52,15 +65,26 @@ RTA//
 
     `npm install`
 
+#### EVIDENCIA
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/7-lab08-part1-4.png)
+
 5. Para ejecutar la aplicación puede usar el comando `npm FibinacciApp.js`, sin embargo una vez pierda la conexión ssh la aplicación dejará de funcionar. Para evitar ese compartamiento usaremos *forever*. Ejecute los siguientes comando dentro de la VM.
 
     `npm install forever -g`
 
     `forever start FibinacciApp.js`
 
+#### EVIDENCIA
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/8-lab08-part1-5.png)
+
 6. Antes de verificar si el endpoint funciona, en Azure vaya a la sección de *Networking* y cree una *Inbound port rule* tal como se muestra en la imágen. Para verificar que la aplicación funciona, use un browser y user el endpoint `http://xxx.xxx.xxx.xxx:3000/fibonacci/6`. La respuesta debe ser `The answer is 8`.
 
 ![](images/part1/part1-vm-3000InboudRule.png)
+
+#### EVIDENCIA
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/9-lab08-part1-6.png)
+
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/10-lab08-part1-6.2.png)
 
 7. La función que calcula en enésimo número de la secuencia de Fibonacci está muy mal construido y consume bastante CPU para obtener la respuesta. Usando la consola del Browser documente los tiempos de respuesta para dicho endpoint usando los siguintes valores:
     * 1000000
@@ -73,10 +97,18 @@ RTA//
     * 1070000
     * 1080000
     * 1090000    
+    
+#### EVIDENCIA
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/11-lab08-part1-7.png)
+
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/12-lab08-part1-7.2.png)
 
 8. Dírijase ahora a Azure y verifique el consumo de CPU para la VM. (Los resultados pueden tardar 5 minutos en aparecer).
 
 ![Imágen 2](images/part1/part1-vm-cpu.png)
+
+#### EVIDENCIA
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/13-lab08-part1-8.png)
 
 9. Ahora usaremos Postman para simular una carga concurrente a nuestro sistema. Siga estos pasos.
     * Instale newman con el comando `npm install newman -g`. Para conocer más de Newman consulte el siguiente [enlace](https://learning.getpostman.com/docs/postman/collection-runs/command-line-integration-with-newman/).
@@ -89,11 +121,29 @@ RTA//
     newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
     ```
 
+#### EVIDENCIA
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/14-lab08-part1-9.png)
+
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/15-lab08-part1-9.png)
+
+![evidencia conexion](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/16-lab08-part1-9.2.png)
+
 10. La cantidad de CPU consumida es bastante grande y un conjunto considerable de peticiones concurrentes pueden hacer fallar nuestro servicio. Para solucionarlo usaremos una estrategia de Escalamiento Vertical. En Azure diríjase a la sección *size* y a continuación seleccione el tamaño `B2ms`.
 
 ![Imágen 3](images/part1/part1-vm-resize.png)
 
+#### EVIDENCIA
+   * Escogimos otro tamano diferente a B2ms ya que en localizacion seleccionamos West US por que no nos permitia escoger East US 2
+![evidencia error cambio tamano](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/errorCambioTamanoB2ms.png)
+
 11. Una vez el cambio se vea reflejado, repita el paso 7, 8 y 9.
+
+#### EVIDENCIA
+![evidencia repetri punto 7](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/17-lab08-part1-11.punto7.png)
+
+![evidencia repetir punto 8](https://github.com/jchirivi97/Laboratorio-8--AZURE-LOAD-BALANCING/blob/master/images/part1/evidencias/18-lab08-part1-11.punto8.png)
+
+
 12. Evalue el escenario de calidad asociado al requerimiento no funcional de escalabilidad y concluya si usando este modelo de escalabilidad logramos cumplirlo.
 13. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
 
