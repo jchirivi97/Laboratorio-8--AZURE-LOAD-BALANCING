@@ -311,11 +311,18 @@ Ahora vamos a crear 3 VMs (VM1, VM2 y VM3) con direcciones IP públicas standar 
 
 ![](images/part2/part2-vm-create3.png)
 
+![punto3](https://user-images.githubusercontent.com/48265107/78923243-7fa09900-7a5d-11ea-908c-8f04e45da122.jpeg)
+
 4. Ahora asignaremos esta VM a nuestro balanceador de carga, para ello siga la configuración de la siguiente imágen.
 
 ![](images/part2/part2-vm-create4.png)
 
+![punto4](https://user-images.githubusercontent.com/48265107/78923170-67307e80-7a5d-11ea-92cd-f0a040034951.jpeg)
+
 5. Finalmente debemos instalar la aplicación de Fibonacci en la VM. para ello puede ejecutar el conjunto de los siguientes comandos, cambiando el nombre de la VM por el correcto
+
+
+
 
 ```
 git clone https://github.com/daprieto1/ARSW_LOAD-BALANCING_AZURE.git
@@ -332,6 +339,11 @@ forever start FibonacciApp.js
 ```
 
 Realice este proceso para las 3 VMs, por ahora lo haremos a mano una por una, sin embargo es importante que usted sepa que existen herramientas para aumatizar este proceso, entre ellas encontramos Azure Resource Manager, OsDisk Images, Terraform con Vagrant y Paker, Puppet, Ansible entre otras.
+
+
+![punto5](https://user-images.githubusercontent.com/48265107/78923089-48ca8300-7a5d-11ea-8472-1ad4dcba9fd2.jpeg)
+
+
 
 #### Probar el resultado final de nuestra infraestructura
 
